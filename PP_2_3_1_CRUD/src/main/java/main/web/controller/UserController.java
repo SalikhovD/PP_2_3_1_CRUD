@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 @Controller
-public class HelloController {
+public class UserController {
 
     @Autowired
     UserService service;
@@ -27,7 +27,6 @@ public class HelloController {
 
     @RequestMapping(value = "/delete-user")
     public String deleteUser(@RequestParam Long id) {
-        System.out.println("User " + id + " is deleted");
         service.deleteUser(id);
         return "redirect:/";
     }
