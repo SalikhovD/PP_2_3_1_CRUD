@@ -15,44 +15,46 @@ import java.util.List;
 
 @Repository
 public class UserDaoImp implements UserDao {
-
     @Autowired
-    private SessionFactory sessionFactory;
+    private EntityManager entityManager;
 
 
     @Override
     public void add(User user) {
-        sessionFactory.getCurrentSession().save(user);
+        Session session = entityManager.unwrap(Session.class);
+        session.save(user);
     }
 
     @Override
     public void deleteUser(Long id) {
-        Session session = sessionFactory.getCurrentSession();
+        Session session = entityManager.unwrap(Session.class);
         session.remove(session.get(User.class, id));
     }
 
     @Override
     public void saveOrUpdate(User user) {
-        Session session = sessionFactory.getCurrentSession();
+        Session session = entityManager.unwrap(Session.class);
         session.saveOrUpdate(user);
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public List<User> listUsers() {
-        TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("from User");
+        Session session = entityManager.unwrap(Session.class);
+        TypedQuery<User> query = session.createQuery("from User");
         return query.getResultList();
     }
 
+
     @Override
     public User getUser(Long id) {
-        Session session = sessionFactory.getCurrentSession();
+        Session session = entityManager.unwrap(Session.class);
         return session.get(User.class, id);
     }
 
     @Override
     public void dropTable(String tableName) {
-        Session session = sessionFactory.getCurrentSession();
+        Session session = entityManager.unwrap(Session.class);
         String sql = "DROP TABLE  IF EXISTS " + tableName;
         session.createSQLQuery(sql).executeUpdate();
     }
