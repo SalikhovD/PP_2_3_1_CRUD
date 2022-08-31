@@ -13,6 +13,4 @@ public interface UserService {
 
     List<User> listUsers();
     User getUser(Long id);
-
-    void dropTable(String tableName);
 }

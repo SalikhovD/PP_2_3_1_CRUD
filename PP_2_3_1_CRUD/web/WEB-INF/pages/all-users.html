@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <body>
 <h2>All users: </h2>
@@ -16,23 +15,22 @@
         <td th:text="${user.age}"/>
         <td th:text="${user.country}"/>
         <td>
-            <form action="/spring_hibernate_Web_exploded/delete-user">
-                <input type="hidden" name="id"   th:value=${user.id} />
+            <form action="/spring_hibernate_war_exploded/delete-user">
+                <input type="hidden" name="id" th:value=${user.id}>
                 <button type="submit">Delete</button>
             </form>
         </td>
         <td>
-            <form action="/spring_hibernate_Web_exploded/updateInfo">
-                <input type="hidden" name="id"   th:value=${user.id} />
+            <form action="/spring_hibernate_war_exploded/updateInfo">
+                <input type="hidden" name="id" th:value=${user.id}>
                 <button type="submit">Update</button>
             </form>
         </td>
     </tr>
 </table>
 
-<form action="/spring_hibernate_Web_exploded/new-user">
+<form action="/spring_hibernate_war_exploded/new-user">
     <button type="submit">Add new user</button>
 </form>
-
 </body>
 </html>

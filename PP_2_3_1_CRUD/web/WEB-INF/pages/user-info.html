@@ -4,7 +4,7 @@
 <h2>Employee info</h2>
 <br>
 
-<form action="/spring_hibernate_Web_exploded/save-or-update-user" th:object="${user}" method="post">
+<form action="/spring_hibernate_war_exploded/save-or-update-user" th:object="${user}" method="post">
     <input type="hidden" th:field="*{id}"/>
     <p>First name: <input type="text" th:field="*{firstName}"/></p>
     <p>Last name: <input type="text" th:field="*{lastName}"/></p>

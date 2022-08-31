@@ -14,7 +14,4 @@ public interface UserDao {
     List<User> listUsers();
 
     User getUser(Long id);
-
-    void dropTable(String tableName);
-
 }

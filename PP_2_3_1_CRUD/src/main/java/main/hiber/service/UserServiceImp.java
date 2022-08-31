@@ -11,8 +11,12 @@ import java.util.List;
 @Service
 public class UserServiceImp implements UserService {
 
+    private final UserDao userDao;
+
     @Autowired
-    private UserDao userDao;
+    UserServiceImp(UserDao userDao) {
+        this.userDao = userDao;
+    }
 
     @Transactional
     @Override
@@ -43,11 +47,4 @@ public class UserServiceImp implements UserService {
     public User getUser(Long id) {
         return userDao.getUser(id);
     }
-
-    @Transactional
-    @Override
-    public void dropTable(String tableName) {
-        userDao.dropTable(tableName);
-    }
-
 }

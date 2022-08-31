@@ -2,18 +2,17 @@ package main.hiber.dao;
 
 import main.hiber.entity.User;
 import org.hibernate.Session;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
 public class UserDaoImp implements UserDao {
-    @Autowired
+    @PersistenceContext
     private EntityManager entityManager;
-
 
     @Override
     public void add(User user) {
@@ -34,24 +33,15 @@ public class UserDaoImp implements UserDao {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public List<User> listUsers() {
         Session session = entityManager.unwrap(Session.class);
-        TypedQuery<User> query = session.createQuery("from User");
+        Query<User> query = session.createQuery("from User", User.class);
         return query.getResultList();
     }
-
 
     @Override
     public User getUser(Long id) {
         Session session = entityManager.unwrap(Session.class);
         return session.get(User.class, id);
-    }
-
-    @Override
-    public void dropTable(String tableName) {
-        Session session = entityManager.unwrap(Session.class);
-        String sql = "DROP TABLE  IF EXISTS " + tableName;
-        session.createSQLQuery(sql).executeUpdate();
     }
 }
